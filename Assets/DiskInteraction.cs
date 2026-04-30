@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DiskInteraction : MonoBehaviour
 {
-   public TileColor discColor = TileColor.Red;
+    [SerializeField] GameManager gameManager;
+
+    public TileColor discColor = TileColor.Red;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,13 +14,23 @@ public class DiskInteraction : MonoBehaviour
 
         if(tile != null)
         {
+            tile.GetComponent<Collider2D>().enabled = false;
+            
+            if(gameManager == null)
+            {
+                Debug.Log("empty gameManager!");
+                return;
+            }
+
             if(tile.ColorState == discColor)
             {
-                Debug.Log("correct color!");
+                gameManager.AddHit();
+                //Debug.Log("correct color!");
             }
             else
             {
-                Debug.Log("wrong color!");
+                gameManager.AddMiss();
+                //Debug.Log("wrong color!");
             }
         }
     }
