@@ -5,6 +5,8 @@ using UnityEngine;
 public class DiskInteraction : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+    [SerializeField] ParticleSystem particle;
+
 
     public TileColor discColor = TileColor.Red;
 
@@ -12,26 +14,31 @@ public class DiskInteraction : MonoBehaviour
     {
         Tile tile = collision.GetComponent<Tile>();
 
-        if(tile != null)
+        if (tile == null)
+            return;
+
+        if (gameManager == null)
         {
-            tile.GetComponent<Collider2D>().enabled = false;
-            
-            if(gameManager == null)
+            Debug.Log("empty gameManager!");
+            return;
+        }
+
+        Vector2 hitPoint = collision.ClosestPoint(transform.position);
+        if (tile.ColorState == discColor)
+        {
+            if (particle == null)
             {
-                Debug.Log("empty gameManager!");
+                Debug.Log("empty particle!");
                 return;
             }
 
-            if(tile.ColorState == discColor)
-            {
-                gameManager.AddHit();
-                //Debug.Log("correct color!");
-            }
-            else
-            {
-                gameManager.AddMiss();
-                //Debug.Log("wrong color!");
-            }
+            Instantiate(particle, hitPoint, Quaternion.identity);
+            gameManager.AddHit();
         }
+        else
+        {
+            gameManager.AddMiss();
+        }
+        collision.enabled = false;
     }
 }

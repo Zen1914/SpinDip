@@ -190,6 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81390b3e3448224a813dc8fa2a2c8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  particle: {fileID: 1562095861915768944, guid: fe3361c7206b6fb4ba1d54366f051855, type: 3}
   discColor: 1
 --- !u!1 &7447294054827190863
 GameObject:
@@ -281,4 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81390b3e3448224a813dc8fa2a2c8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  particle: {fileID: 8020876497363595668, guid: 80adfa06b4627944fbdb171ca76e6b16, type: 3}
   discColor: 0
