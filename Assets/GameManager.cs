@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winPanel;
     [SerializeField] MusicManager musicManager;
     [SerializeField] GameObject[] stars;
+    [SerializeField] GameStateManager stateManager;
 
 
     public int missLost = 15;
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleLost()
     {
+        stateManager.ChangeGameState(GameStates.EndGame);
         if(lostPanel == null)
         {
             Debug.Log("empty lostPanel!");
@@ -99,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleWin()
     {
+        stateManager.ChangeGameState(GameStates.EndGame);
         float accuracy = (float)hit / musicManager.SpawnCount;
         int star = 0;
 
