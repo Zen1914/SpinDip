@@ -34,18 +34,14 @@ public class SpinDisc : MonoBehaviour
         }
     }
 
-
     private void CheckIfTouchingDisc(Touch touch)
     {
-        if (touch.phase == TouchPhase.Began)
-        {
-            Vector2 worldPos = Camera.main.ScreenToWorldPoint(touch.position);
-            Collider2D hit = Physics2D.OverlapPoint(worldPos);
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(touch.position);
+        Collider2D hit = Physics2D.OverlapPoint(worldPos);
 
-            if (hit != null && hit.transform == transform)
-            {
-                isDragging = true;
-            }
+        if (hit != null && hit.transform.IsChildOf(transform))
+        {
+            isDragging = true;
         }
-    }
+    } 
 }

@@ -5,14 +5,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Tile : MonoBehaviour
 {
-    public enum TileColor
-    {
-        Red,
-        Blue
-    }
+    [SerializeField] Sprite spriteBlue;
+    [SerializeField] Sprite spriteRed;
 
-    private TileColor colorState = TileColor.Red;
-
+    public TileColor ColorState => colorState;
     public float speed = 2.0f;
     public float sinkDistance = 0.5f;
 
@@ -20,6 +16,8 @@ public class Tile : MonoBehaviour
     private Vector2 dir;
     private Transform tileVisuals;
     private SpriteRenderer sr;
+    private TileColor colorState = TileColor.Red;
+
 
     private void Awake()
     {
@@ -50,15 +48,20 @@ public class Tile : MonoBehaviour
 
     private void PickRandomColor()
     {
-        if(Random.value > 0.5)
+        if (Random.value > 0.5)
         {
             colorState = TileColor.Blue;
-            sr.color = Color.blue;
+            sr.sprite = spriteBlue;
         }
         else
         {
             colorState = TileColor.Red;
-            sr.color = Color.red;
+            sr.sprite = spriteRed;
         }
     }
+}
+public enum TileColor
+{
+    Red,
+    Blue
 }
