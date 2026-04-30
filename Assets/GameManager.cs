@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI missTextUI;
     [SerializeField] TextMeshProUGUI comboUIText;
     [SerializeField] GameObject lostPanel;
+    [SerializeField] GameObject winPanel;
+    [SerializeField] MusicManager musicManager;
+    [SerializeField] GameObject[] stars;
 
-    public int missLost = 6;
+
+    public int missLost = 15;
 
     int streak = 0;
     int combo = 0;
@@ -34,6 +38,7 @@ public class GameManager : MonoBehaviour
             HandleLost();
         }
 
+        StartCoroutine(PopUI(missTextUI.transform));
         UpdateUI();
     }
 
@@ -44,9 +49,11 @@ public class GameManager : MonoBehaviour
 
         if (streak >= 2)
         {
+            StartCoroutine(PopUI(comboUIText.transform));
             combo++;
         }
 
+        StartCoroutine(PopUI(hitTextUI.transform));
         UpdateUI();
     }
 
@@ -89,4 +96,62 @@ public class GameManager : MonoBehaviour
 
         lostPanel.SetActive(true);
     }
+
+    public void HandleWin()
+    {
+        float accuracy = (float)hit / musicManager.SpawnCount;
+        int star = 0;
+
+        if (accuracy >= 0.95f)
+        {
+            star = 5;
+        }
+        else if (accuracy >= 0.85f)
+        {
+            star = 4;
+        }
+        else if (accuracy >= 0.75f)
+        {
+            star = 3;
+        }
+        else if (accuracy >= 0.65f)
+        {
+            star = 2;
+        }
+        else if (accuracy >= 0.60f)
+        {
+            star = 1;
+        }
+
+        if (star > stars.Length)
+        {
+            Debug.Log("star is more than stars UI!");
+            return;
+        }
+
+        for (int x = 0; x < stars.Length; x++)
+        {
+            stars[x].SetActive(false);
+        }
+        for (int x = 0; x < star; x++)
+        {
+            stars[x].SetActive(true);
+        }
+
+        winPanel.SetActive(true);
+        Debug.Log("accuracy: " + accuracy);
+    }
+
+
+    public IEnumerator PopUI(Transform target)
+    {
+        Vector3 original = target.localScale;
+        Vector3 bigger = original * 1.2f;
+
+        target.localScale = bigger;
+        yield return new WaitForSeconds(0.1f);
+        target.localScale = original;
+    }
+
+    
 }

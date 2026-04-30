@@ -5,10 +5,13 @@ using UnityEngine;
 public class DiskInteraction : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+    [SerializeField] GameObject missedPanel;
     [SerializeField] ParticleSystem particle;
 
-
+    public float missedPanelTime = 0.5f;
     public TileColor discColor = TileColor.Red;
+
+    private Coroutine myCoroutine;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,7 +41,28 @@ public class DiskInteraction : MonoBehaviour
         else
         {
             gameManager.AddMiss();
+
+            if (missedPanel == null)
+            {
+                Debug.Log("empty missedPanel!");
+                return;
+            }
+            if (myCoroutine != null)
+            {
+                StopCoroutine(myCoroutine);
+            }
+
+            myCoroutine = StartCoroutine(MissedPanel());
         }
         collision.enabled = false;
+    }
+
+    private IEnumerator MissedPanel()
+    {
+        missedPanel.SetActive(true);
+
+        yield return new WaitForSeconds(missedPanelTime);
+
+        missedPanel.SetActive(false);
     }
 }
