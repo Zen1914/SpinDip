@@ -13,20 +13,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject lostPanel;
     [SerializeField] GameObject winPanel;
     [SerializeField] MusicManager musicManager;
-    [SerializeField] GameObject[] stars;
+    //[SerializeField] GameObject[] stars;
     [SerializeField] GameStateManager stateManager;
-
     [SerializeField] Image[] hp;
+    [SerializeField] TextMeshProUGUI multiplyerX;
+    [SerializeField] Image onFire;
 
+    //end
+    [SerializeField] TextMeshProUGUI scoreEnd;
+    [SerializeField] TextMeshProUGUI rank;
 
     public int missLost = 3;
+    public int maxMult = 16;
 
-    int streak = 0;
-    int combo = 0;
+    private int streak = 0;
+    private int combo = 0;
     private int hit = 0;
     private int miss = 0;
-
     private int score;
+    private int mult = 0;
 
     private void Awake()
     {
@@ -41,6 +46,7 @@ public class GameManager : MonoBehaviour
 
         streak = 0;
         combo = 0;
+        mult = 0;
 
         if (miss >= missLost)
         {
@@ -63,24 +69,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void AddHit()
     {
+        //1. add hit
         hit++;
+
+        //2. add streak
         streak++;
 
-        int points = 100;
+        //3. points
+        int points = 2;
 
+        //4. if streak is more than 2 add combo
         if (streak >= 2)
         {
             StartCoroutine(PopUI(comboUIText.transform));
+
+            mult = Mathf.Min(mult + 2, maxMult);
             combo++;
-            points *= 2;
+            points *= mult;
         }
 
+        //5. add score
         score += points;
 
+        //6. pop ui
         StartCoroutine(PopUI(scoreTextUI.transform));
+
+        //7. update ui
         UpdateUI();
     }
 
@@ -93,23 +109,41 @@ public class GameManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        if(scoreTextUI == null || missTextUI == null || comboUIText == null)
+        if(scoreTextUI == null || missTextUI == null || comboUIText == null || multiplyerX == null || onFire == null)
         {
             Debug.Log("missing UI!");
             return;
         }
 
+        float t = mult / 16f;
+        Color gold = new Color(1f, 0.84f, 0f);
+        multiplyerX.color = Color.Lerp(Color.white, gold, t);
+
+        if(mult >= 10)
+        {
+            onFire.gameObject.SetActive(true);
+        }
+        else
+        {
+            onFire.gameObject.SetActive(false);
+        }
+
         comboUIText.text = $"Combo: {combo}";
+        multiplyerX.text = $"X{mult}";
+
         if (combo <= 0)
         {
             comboUIText.gameObject.SetActive(false);
+            multiplyerX.gameObject.SetActive(false);
         }
         else
         {
             comboUIText.gameObject.SetActive(true);
+            multiplyerX.gameObject.SetActive(true);
         }
 
         scoreTextUI.text = $"Score: {score}";
+        scoreEnd.text = $"Score: {score}";
         missTextUI.text = $"Miss: {miss}";  
     }
 
@@ -129,42 +163,26 @@ public class GameManager : MonoBehaviour
     {
         stateManager.ChangeGameState(GameStates.EndGame);
         float accuracy = (float)hit / (float)musicManager.BeatCount;
-        int star = 0;
 
         if (accuracy >= 0.95f)
         {
-            star = 5;
+            rank.text = "Rank: S";
         }
         else if (accuracy >= 0.85f)
         {
-            star = 4;
+            rank.text = "Rank: A";
         }
         else if (accuracy >= 0.75f)
         {
-            star = 3;
+            rank.text = "Rank: B";
         }
         else if (accuracy >= 0.65f)
         {
-            star = 2;
+            rank.text = "Rank: C";
         }
         else if (accuracy >= 0.60f)
         {
-            star = 1;
-        }
-
-        if (star > stars.Length)
-        {
-            Debug.Log("star is more than stars UI!");
-            return;
-        }
-
-        for (int x = 0; x < stars.Length; x++)
-        {
-            stars[x].SetActive(false);
-        }
-        for (int x = 0; x < star; x++)
-        {
-            stars[x].SetActive(true);
+            rank.text = "Rank: D";
         }
 
         winPanel.SetActive(true);
