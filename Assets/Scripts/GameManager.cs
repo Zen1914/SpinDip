@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI hitTextUI;
+    [SerializeField] TextMeshProUGUI scoreTextUI;
     [SerializeField] TextMeshProUGUI missTextUI;
     [SerializeField] TextMeshProUGUI comboUIText;
     [SerializeField] GameObject lostPanel;
@@ -15,13 +16,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] stars;
     [SerializeField] GameStateManager stateManager;
 
+    [SerializeField] Image[] hp;
 
-    public int missLost = 15;
+
+    public int missLost = 3;
 
     int streak = 0;
     int combo = 0;
     private int hit = 0;
     private int miss = 0;
+
+    private int score;
 
     private void Awake()
     {
@@ -31,6 +36,9 @@ public class GameManager : MonoBehaviour
     public void AddMiss()
     {
         miss++;
+
+        UpdateHPUI();
+
         streak = 0;
         combo = 0;
 
@@ -43,18 +51,36 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    private void UpdateHPUI()
+    {
+        foreach(var item in hp)
+        {
+            if (item.enabled)
+            {
+                item.enabled = false;
+                return;
+            }
+        }
+    }
+
+
     public void AddHit()
     {
         hit++;
         streak++;
 
+        int points = 100;
+
         if (streak >= 2)
         {
             StartCoroutine(PopUI(comboUIText.transform));
             combo++;
+            points *= 2;
         }
 
-        StartCoroutine(PopUI(hitTextUI.transform));
+        score += points;
+
+        StartCoroutine(PopUI(scoreTextUI.transform));
         UpdateUI();
     }
 
@@ -67,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        if(hitTextUI == null || missTextUI == null || comboUIText == null)
+        if(scoreTextUI == null || missTextUI == null || comboUIText == null)
         {
             Debug.Log("missing UI!");
             return;
@@ -83,7 +109,7 @@ public class GameManager : MonoBehaviour
             comboUIText.gameObject.SetActive(true);
         }
 
-        hitTextUI.text = $"Hit: {hit}";
+        scoreTextUI.text = $"Score: {score}";
         missTextUI.text = $"Miss: {miss}";  
     }
 
@@ -102,7 +128,7 @@ public class GameManager : MonoBehaviour
     public void HandleWin()
     {
         stateManager.ChangeGameState(GameStates.EndGame);
-        float accuracy = (float)hit / musicManager.SpawnCount;
+        float accuracy = (float)hit / (float)musicManager.BeatCount;
         int star = 0;
 
         if (accuracy >= 0.95f)

@@ -25,7 +25,7 @@ public class Tile : MonoBehaviour
         sr = tileVisuals.GetComponent<SpriteRenderer>();
         disk = FindAnyObjectByType<SpinDisc>().transform;
         FaceToDisc();
-        PickRandomColor();
+        //PickRandomColor();
     }
 
     void Update()
@@ -46,9 +46,9 @@ public class Tile : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    private void PickRandomColor()
+    public void PickRandomColor(bool isRed)
     {
-        if (Random.value > 0.5)
+        if (!isRed)
         {
             colorState = TileColor.Blue;
             sr.sprite = spriteBlue;

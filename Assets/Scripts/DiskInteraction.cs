@@ -15,18 +15,25 @@ public class DiskInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //1. get tile script from the collision
         Tile tile = collision.GetComponent<Tile>();
 
+        //2. check if tile is null
         if (tile == null)
+        {
             return;
-
+        }
+            
         if (gameManager == null)
         {
             Debug.Log("empty gameManager!");
             return;
         }
 
+        //?
         Vector2 hitPoint = collision.ClosestPoint(transform.position);
+
+        //3. if tile/collision color state is equal to this game object/disc color hit
         if (tile.ColorState == discColor)
         {
             if (particle == null)
@@ -36,8 +43,10 @@ public class DiskInteraction : MonoBehaviour
             }
 
             Instantiate(particle, hitPoint, Quaternion.identity);
+            ChangeBGColor(tile.ColorState);
             gameManager.AddHit();
         }
+        //miss
         else
         {
             gameManager.AddMiss();
@@ -64,5 +73,17 @@ public class DiskInteraction : MonoBehaviour
         yield return new WaitForSeconds(missedPanelTime);
 
         missedPanel.SetActive(false);
+    }
+
+    private void ChangeBGColor(TileColor color)
+    {
+        if (color == TileColor.Red)
+        {
+            Camera.main.backgroundColor = new Color(1f, 0.859f, 0.780f) * 0.7f;
+        }
+        else
+        {
+            Camera.main.backgroundColor = new Color(0.780f, 0.843f, 1f) * 0.7f;
+        }
     }
 }

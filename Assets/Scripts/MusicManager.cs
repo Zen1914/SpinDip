@@ -4,48 +4,52 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] Timer timer;
+    [SerializeField] SpawnTile[] spawnTiles; // spawn points
+    [SerializeField] SongBeats beatsData; //beats
+    [SerializeField] AudioSource audioSource; //song
 
-    public int SpawnCount => spawns;
-
-    public SpawnTile[] spawnTile;
-    public float bpm = 120f;
-    public int spawnEveryNBeats = 2;
-    public float travelTime = 1.0f;
-
-
-    private int beatCount = 0;
     private double startTime;
-    private double nextBeatTime = 0;
-    private double beatInterval;
-    private int spawns;
+    private int index = 0;
+
+    public int BeatCount
+    {
+        get {return beatsData.beats.Length; }
+    }
 
     void Start()
     {
-        startTime = AudioSettings.dspTime; //mark the start of a song
+        startTime = AudioSettings.dspTime;
         audioSource.Play();
-        beatInterval = 60.0 / bpm; //convert bpm to seconds per beat
     }
 
-    private void Update()
+    void Update()
     {
-        if (timer.TimesUP)
+        double songTime = AudioSettings.dspTime - startTime;
+
+        if (index >= beatsData.beats.Length)
         {
-            Debug.Log("times up!");
+            Debug.Log("no more beats left!");
             return;
         }
 
-        double songTime = AudioSettings.dspTime - startTime;
-        while (songTime >= nextBeatTime - travelTime)
+        if (songTime >= beatsData.beats[index].time - 3.5f)
         {
-            if (beatCount % spawnEveryNBeats == 0) //every n beats spawn
+            //1. gets teh spawner index in data
+            int spawner = beatsData.beats[index].spawnerObjIndex;
+
+            //2. check if it is more than spawner length
+            if(spawner >= spawnTiles.Length)
             {
-                spawnTile[Random.Range(0, spawnTile.Length)].Spawn();
-                spawns++;
+                spawner = 0;
             }
-            beatCount++;
-            nextBeatTime += beatInterval;
+
+            //3. spawn 
+            Debug.Log($"spawning: {index}");
+            spawnTiles[spawner].Spawn(beatsData.beats[index].isRed);
+
+            //4. increase index
+            index++;
         }
     }
+
 }

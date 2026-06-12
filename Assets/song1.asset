@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ae578eae12ee0498eea52eb0f3447b, type: 3}
+  m_Name: song1
+  m_EditorClassIdentifier: 
+  songName: 
+  beats:
+  - spawnerObjIndex: 0
+    time: 3.6
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 1
+    time: 4.94
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 0
+    time: 6.14
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 1
+    time: 7.53
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 0
+    time: 8.49
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 2
+    time: 10.64
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 2
+    time: 11.79
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 2
+    time: 13.01
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 2
+    time: 14.22
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 1
+    time: 15.42
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 0
+    time: 16.61
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 2
+    time: 17.79
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 1
+    time: 18.98
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 0
+    time: 19.79
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 2
+    time: 20.94
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 1
+    time: 22.1
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 3
+    time: 24.44
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 3
+    time: 25.51
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 3
+    time: 26.75
+    special: 0
+    isRed: 1
+  - spawnerObjIndex: 0
+    time: 27.94
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 3
+    time: 29.24
+    special: 0
+    isRed: 0
+  - spawnerObjIndex: 2
+    time: 30.33
+    special: 0
+    isRed: 0

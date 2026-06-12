@@ -6,8 +6,16 @@ public class SpawnTile : MonoBehaviour
 {
     [SerializeField] GameObject tilePrefab;
 
-    public void Spawn()
+    public void Spawn(bool isRed)
     {
-        Instantiate(tilePrefab, transform.position, Quaternion.identity);   
+        GameObject tile = Instantiate(tilePrefab, transform.position, Quaternion.identity);
+        Tile tileScript = tile.GetComponent<Tile>();
+
+        if(tileScript == null)
+        {
+            return;
+        }
+
+        tileScript.PickRandomColor(isRed);
     }
 }
