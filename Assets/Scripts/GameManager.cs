@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     private int score;
     private int mult = 0;
 
+    private Coroutine myCoroutine;
+
+
     private void Awake()
     {
         UpdateUI();
@@ -55,9 +58,15 @@ public class GameManager : MonoBehaviour
             HandleLost();
         }
 
-        StartCoroutine(PopUI(missTextUI.transform));
+        if (myCoroutine != null)
+        {
+            StopCoroutine(myCoroutine);
+        }
+        myCoroutine = StartCoroutine(PopUI(missTextUI.transform));
+
         UpdateUI();
     }
+
 
     private void UpdateHPUI()
     {
@@ -96,7 +105,12 @@ public class GameManager : MonoBehaviour
         score += points;
 
         //6. pop ui
-        StartCoroutine(PopUI(scoreTextUI.transform));
+
+        if (myCoroutine != null)
+        {
+            StopCoroutine(myCoroutine);
+        }
+        myCoroutine = StartCoroutine(PopUI(scoreTextUI.transform));
 
         //7. update ui
         UpdateUI();
