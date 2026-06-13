@@ -317,7 +317,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595903311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8bd14317920043f4dba801d55437836f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ea2348a1bdde9e4882aba8e11b2decc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -450,7 +450,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.83921576, g: 0.7137255, b: 0.6784314, a: 0.39215687}
+  m_Color: {r: 0.83921576, g: 0.7137255, b: 0.6784314, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -768,7 +768,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
+  m_BackGroundColor: {r: 0.21898362, g: 0.22548723, b: 0.3490566, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1129,6 +1129,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1833979302965744424, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 48b325dc2271dc54c89411a7b303534e, type: 3}
+    - target: {fileID: 1833979302965744424, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1163,7 +1167,7 @@ PrefabInstance:
     - target: {fileID: 4307261440492779622, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2136695641, guid: a7f047322edb1c344801e65e66a5d831, type: 3}
+      objectReference: {fileID: 21300000, guid: 9ea2348a1bdde9e4882aba8e11b2decc, type: 3}
     - target: {fileID: 4307261440492779622, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1178,7 +1182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441125733965344759, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Name
-      value: Button (1)
+      value: Button_Credits
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_text
@@ -1186,19 +1190,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.4156863
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.26666668
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.25882354
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4285154370
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1427,10 +1431,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1833979302965744424, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 48b325dc2271dc54c89411a7b303534e, type: 3}
     - target: {fileID: 4307261440492779622, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2136695641, guid: a7f047322edb1c344801e65e66a5d831, type: 3}
+      objectReference: {fileID: 21300000, guid: 9ea2348a1bdde9e4882aba8e11b2decc, type: 3}
     - target: {fileID: 4307261440492779622, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1445,7 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441125733965344759, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Name
-      value: Button (2)
+      value: Button _Quit
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_text
@@ -1453,19 +1461,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.42352945
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.29803923
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.2901961
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4285287498
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1711,6 +1719,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1833979302965744424, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 48b325dc2271dc54c89411a7b303534e, type: 3}
+    - target: {fileID: 1833979302965744424, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1769,7 +1781,7 @@ PrefabInstance:
     - target: {fileID: 4307261440492779622, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2136695641, guid: a7f047322edb1c344801e65e66a5d831, type: 3}
+      objectReference: {fileID: 21300000, guid: 9ea2348a1bdde9e4882aba8e11b2decc, type: 3}
     - target: {fileID: 4307261440492779622, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1784,7 +1796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441125733965344759, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Button_Play
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_text
@@ -1796,15 +1808,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 753d820293ac59244a09ffa92a16d763, type: 2}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.4156863
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.26666668
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.25882354
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_sharedMaterial
@@ -1812,7 +1824,7 @@ PrefabInstance:
       objectReference: {fileID: 4684421603565828468, guid: 753d820293ac59244a09ffa92a16d763, type: 2}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4285154370
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7295485257482831600, guid: d9d070b0bf3375f42b3a53e65c097d3c, type: 3}
       propertyPath: m_hasFontAssetChanged

@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
 
     //end
     [SerializeField] TextMeshProUGUI scoreEnd;
+    [SerializeField] TextMeshProUGUI scoreEndLose;
     [SerializeField] TextMeshProUGUI rank;
+    [SerializeField] int id;
 
     public int missLost = 3;
     public int maxMult = 16;
@@ -109,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        if(scoreTextUI == null || missTextUI == null || comboUIText == null || multiplyerX == null || onFire == null)
+        if(scoreTextUI == null || missTextUI == null || comboUIText == null || multiplyerX == null || onFire == null || scoreEnd == null || scoreEndLose == null)
         {
             Debug.Log("missing UI!");
             return;
@@ -143,7 +145,11 @@ public class GameManager : MonoBehaviour
         }
 
         scoreTextUI.text = $"Score: {score}";
+
+        //end
         scoreEnd.text = $"Score: {score}";
+        scoreEndLose.text = $"Score: {score}";
+
         missTextUI.text = $"Miss: {miss}";  
     }
 
@@ -167,22 +173,27 @@ public class GameManager : MonoBehaviour
         if (accuracy >= 0.95f)
         {
             rank.text = "Rank: S";
+            Rankings.OnSongFinished(id, Ranks.S);
         }
         else if (accuracy >= 0.85f)
         {
             rank.text = "Rank: A";
+            Rankings.OnSongFinished(id, Ranks.A);
         }
         else if (accuracy >= 0.75f)
         {
             rank.text = "Rank: B";
+            Rankings.OnSongFinished(id, Ranks.B);
         }
         else if (accuracy >= 0.65f)
         {
             rank.text = "Rank: C";
+            Rankings.OnSongFinished(id, Ranks.C);
         }
         else if (accuracy >= 0.60f)
         {
             rank.text = "Rank: D";
+            Rankings.OnSongFinished(id, Ranks.D);
         }
 
         winPanel.SetActive(true);
@@ -198,7 +209,7 @@ public class GameManager : MonoBehaviour
         target.localScale = bigger;
         yield return new WaitForSeconds(0.1f);
         target.localScale = original;
-    }
-
-    
+    }   
 }
+
+
