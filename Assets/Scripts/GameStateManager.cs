@@ -27,6 +27,16 @@ public class GameStateManager : MonoBehaviour
             if (item.gameState == newState)
             {
                 currentGameState = newState;
+                //add
+                if(item.timeScale == 0)
+                {
+                    AudioListener.pause = true;
+                }
+                else
+                {
+                    AudioListener.pause = false;
+                }
+                //add
                 Time.timeScale = item.timeScale;
                 Debug.LogWarning("GameState: " + currentGameState + " TimeScale: " + Time.timeScale);
                 return;
